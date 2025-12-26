@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Website</title>
+    <!-- Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Reset dan dasar */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
         
         body {
@@ -22,12 +25,23 @@
             margin: 0 auto;
         }
         
+        /* Mode gelap */
+        body.dark-mode {
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+        
         /* Header */
         header {
             text-align: center;
             padding: 30px 0;
             border-bottom: 2px solid #000000;
             margin-bottom: 40px;
+            position: relative;
+        }
+        
+        body.dark-mode header {
+            border-bottom-color: #f0f0f0;
         }
         
         h1 {
@@ -40,6 +54,39 @@
         .subtitle {
             font-size: 1.1rem;
             font-weight: 300;
+        }
+        
+        /* Tombol toggle dark mode */
+        .theme-toggle {
+            position: absolute;
+            top: 30px;
+            right: 0;
+            background: none;
+            border: 1px solid #000000;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #000000;
+        }
+        
+        body.dark-mode .theme-toggle {
+            border-color: #f0f0f0;
+            color: #f0f0f0;
+        }
+        
+        .theme-toggle:hover {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        
+        body.dark-mode .theme-toggle:hover {
+            background-color: #f0f0f0;
+            color: #121212;
         }
         
         /* Container link */
@@ -61,10 +108,22 @@
             display: block;
         }
         
+        body.dark-mode .link-card {
+            background-color: #1e1e1e;
+            border-color: #444444;
+            color: #f0f0f0;
+        }
+        
         .link-card:hover {
             background-color: #000000;
             color: #ffffff;
             cursor: pointer;
+        }
+        
+        body.dark-mode .link-card:hover {
+            background-color: #f0f0f0;
+            color: #121212;
+            border-color: #f0f0f0;
         }
         
         .link-title {
@@ -79,8 +138,16 @@
             word-break: break-all;
         }
         
+        body.dark-mode .link-url {
+            color: #aaaaaa;
+        }
+        
         .link-card:hover .link-url {
             color: #cccccc;
+        }
+        
+        body.dark-mode .link-card:hover .link-url {
+            color: #333333;
         }
         
         /* Footer */
@@ -90,6 +157,10 @@
             border-top: 1px solid #000000;
             margin-top: 40px;
             font-size: 0.9rem;
+        }
+        
+        body.dark-mode footer {
+            border-top-color: #444444;
         }
         
         /* Responsif untuk mobile */
@@ -105,6 +176,17 @@
             body {
                 padding: 15px;
             }
+            
+            .theme-toggle {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 10px auto 20px;
+            }
+            
+            header {
+                padding-bottom: 20px;
+            }
         }
     </style>
 </head>
@@ -112,6 +194,9 @@
     <header>
         <h1>PORTAL WEBSITE</h1>
         <p class="subtitle">MADE BY ALMAJID</p>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
     </header>
     
     <main>
@@ -173,7 +258,40 @@
     </main>
     
     <footer>
-        <p>Tema hitam putih tanpa elemen dekoratif</p>
+        <!-- Teks footer asli dihapus sesuai permintaan -->
     </footer>
+    
+    <script>
+        // Toggle dark mode
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        
+        // Cek preferensi pengguna dari localStorage
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        
+        // Terapkan mode sesuai preferensi yang disimpan
+        if (isDarkMode) {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+        
+        // Toggle event
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // Toggle ikon
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('darkMode', 'false');
+            }
+        });
+    </script>
 </body>
 </html>
