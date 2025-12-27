@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
-    <!-- Tambahkan CSS langsung di sini -->
     <style>
         /* Reset dan dasar */
         * {
@@ -652,19 +651,91 @@
         </div>
     </div>
 
-    <!-- JavaScript files -->
     <script>
-        // Konfigurasi Supabase - inline sementara
+        // ========== KONFIGURASI GLOBAL ==========
+        // Konstanta konfigurasi
         const SUPABASE_URL = 'https://bxhrnnwfqlsoviysqcdw.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ4aHJubndmcWxzb3ZpeXNxY2R3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3ODkzNDIsImV4cCI6MjA4MTM2NTM0Mn0.O7fpv0TrDd-8ZE3Z9B5zWyAuWROPis5GRnKMxmqncX8';
         
-        const ADMIN_USERNAME = 'admin';
-        const ADMIN_PASSWORD = 'Rantauprapat123';
+        const ADMIN_CONFIG = {
+            username: 'admin',
+            password: 'Rantauprapat123'
+        };
         
-        // Inisialisasi Supabase client
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Inisialisasi Supabase client - hanya sekali
+        let supabaseClient = null;
+        
+        // Fungsi untuk mendapatkan instance Supabase
+        function getSupabase() {
+            if (!supabaseClient) {
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+            return supabaseClient;
+        }
+        
+        // Helper function untuk notifikasi
+        function showNotification(message, type = 'success') {
+            // Hapus notifikasi sebelumnya
+            const oldNotification = document.querySelector('.notification');
+            if (oldNotification) {
+                oldNotification.remove();
+            }
+            
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 20px;
+                border-radius: 5px;
+                color: white;
+                font-weight: 600;
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+                ${type === 'success' ? 'background-color: #28a745;' : 'background-color: #dc3545;'}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Tambahkan animasi CSS jika belum ada
+            if (!document.querySelector('#notification-styles')) {
+                const style = document.createElement('style');
+                style.id = 'notification-styles';
+                style.textContent = `
+                    @keyframes slideIn {
+                        from {
+                            transform: translateX(100%);
+                            opacity: 0;
+                        }
+                        to {
+                            transform: translateX(0);
+                            opacity: 1;
+                        }
+                    }
+                    
+                    @keyframes slideOut {
+                        from {
+                            transform: translateX(0);
+                            opacity: 1;
+                        }
+                        to {
+                            transform: translateX(100%);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
     </script>
-    
+
     <script>
         // ========== main.js ==========
         // Elemen DOM
@@ -723,6 +794,7 @@
         // Fungsi untuk memuat links dari database
         async function loadLinks() {
             try {
+                const supabase = getSupabase();
                 const { data: links, error } = await supabase
                     .from('links')
                     .select('*')
@@ -742,6 +814,7 @@
                 console.error('Error loading links:', error);
                 // Tampilkan default links jika error
                 displayDefaultLinks();
+                showNotification('Error loading links. Using default links.', 'error');
             }
         }
         
@@ -761,6 +834,7 @@
             ];
             
             try {
+                const supabase = getSupabase();
                 for (const link of defaultLinks) {
                     const { error } = await supabase
                         .from('links')
@@ -813,7 +887,7 @@
         // Muat links saat halaman dimuat
         document.addEventListener('DOMContentLoaded', loadLinks);
     </script>
-    
+
     <script>
         // ========== admin.js ==========
         // Elemen DOM Admin
@@ -827,59 +901,7 @@
         // State untuk admin
         let isEditing = false;
         let currentEditId = null;
-        
-        // Helper function untuk notifikasi
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.textContent = message;
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 15px 20px;
-                border-radius: 5px;
-                color: white;
-                font-weight: 600;
-                z-index: 1000;
-                animation: slideIn 0.3s ease;
-                ${type === 'success' ? 'background-color: #28a745;' : 'background-color: #dc3545;'}
-            `;
-            
-            document.body.appendChild(notification);
-            
-            // Animasi CSS
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes slideIn {
-                    from {
-                        transform: translateX(100%);
-                        opacity: 0;
-                    }
-                    to {
-                        transform: translateX(0);
-                        opacity: 1;
-                    }
-                }
-                
-                @keyframes slideOut {
-                    from {
-                        transform: translateX(0);
-                        opacity: 1;
-                    }
-                    to {
-                        transform: translateX(100%);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-            
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
-        }
+        let currentLinks = []; // Simpan links untuk edit
         
         // Event Listener untuk form login
         loginForm.addEventListener('submit', (e) => {
@@ -889,7 +911,7 @@
             const password = document.getElementById('password').value;
             
             // Validasi login
-            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+            if (username === ADMIN_CONFIG.username && password === ADMIN_CONFIG.password) {
                 // Login berhasil
                 loginPage.classList.add('hidden');
                 adminPage.classList.remove('hidden');
@@ -941,6 +963,7 @@
         // Fungsi untuk membuat link baru
         async function createLink(linkData) {
             try {
+                const supabase = getSupabase();
                 const { data, error } = await supabase
                     .from('links')
                     .insert([linkData]);
@@ -958,6 +981,7 @@
         // Fungsi untuk mengupdate link
         async function updateLink(id, linkData) {
             try {
+                const supabase = getSupabase();
                 const { data, error } = await supabase
                     .from('links')
                     .update(linkData)
@@ -978,6 +1002,7 @@
             if (!confirm('Are you sure you want to delete this link?')) return;
             
             try {
+                const supabase = getSupabase();
                 const { error } = await supabase
                     .from('links')
                     .delete()
@@ -997,6 +1022,7 @@
         // Fungsi untuk memuat links di admin dashboard
         async function loadAdminLinks() {
             try {
+                const supabase = getSupabase();
                 const { data: links, error } = await supabase
                     .from('links')
                     .select('*')
@@ -1004,7 +1030,8 @@
                 
                 if (error) throw error;
                 
-                displayAdminLinks(links);
+                currentLinks = links || [];
+                displayAdminLinks(currentLinks);
             } catch (error) {
                 console.error('Error loading admin links:', error);
                 showNotification('Error loading links!', 'error');
@@ -1045,7 +1072,7 @@
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const id = e.target.closest('.edit-btn').dataset.id;
-                    editLink(id, links);
+                    editLink(id);
                 });
             });
             
@@ -1058,8 +1085,8 @@
         }
         
         // Fungsi untuk mengisi form edit
-        async function editLink(id, links) {
-            const link = links.find(l => l.id == id);
+        async function editLink(id) {
+            const link = currentLinks.find(l => l.id == id);
             
             if (link) {
                 document.getElementById('linkId').value = link.id;
