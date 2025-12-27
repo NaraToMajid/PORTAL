@@ -24,6 +24,7 @@
             padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
+            min-height: 100vh;
         }
         
         /* Mode gelap */
@@ -37,12 +38,12 @@
             display: none !important;
         }
         
-        /* Header */
+        /* ====== HEADER STYLES ====== */
         header {
             text-align: center;
-            padding: 30px 0;
+            padding: 20px 0;
             border-bottom: 2px solid #000000;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             position: relative;
         }
         
@@ -51,40 +52,42 @@
         }
         
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 700;
             letter-spacing: 1px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            padding: 0 60px;
         }
         
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 300;
+            margin-bottom: 15px;
+        }
+        
+        /* Tombol Header Container */
+        .header-buttons {
+            position: absolute;
+            top: 20px;
+            right: 0;
+            display: flex;
+            gap: 10px;
         }
         
         /* Tombol toggle dark mode dan admin */
         .theme-toggle, .admin-toggle {
-            position: absolute;
-            top: 30px;
             background: none;
             border: 1px solid #000000;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
             color: #000000;
-        }
-        
-        .theme-toggle {
-            right: 50px;
-        }
-        
-        .admin-toggle {
-            right: 0;
+            transition: all 0.2s ease;
         }
         
         body.dark-mode .theme-toggle,
@@ -97,6 +100,7 @@
         .admin-toggle:hover {
             background-color: #000000;
             color: #ffffff;
+            transform: scale(1.05);
         }
         
         body.dark-mode .theme-toggle:hover,
@@ -105,7 +109,7 @@
             color: #121212;
         }
         
-        /* Container link */
+        /* ====== MAIN CONTENT STYLES ====== */
         .links-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -122,7 +126,7 @@
             text-decoration: none;
             color: #000000;
             display: block;
-            border-radius: 8px;
+            border-radius: 10px;
         }
         
         body.dark-mode .link-card {
@@ -135,8 +139,8 @@
             background-color: #000000;
             color: #ffffff;
             cursor: pointer;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
         
         body.dark-mode .link-card:hover {
@@ -146,15 +150,16 @@
         }
         
         .link-title {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 8px;
         }
         
         .link-url {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #555555;
             word-break: break-all;
+            opacity: 0.8;
         }
         
         body.dark-mode .link-url {
@@ -169,10 +174,10 @@
             color: #333333;
         }
         
-        /* Footer */
+        /* ====== FOOTER STYLES ====== */
         footer {
             text-align: center;
-            padding: 30px 0;
+            padding: 25px 0;
             border-top: 1px solid #000000;
             margin-top: 40px;
             font-size: 0.9rem;
@@ -187,17 +192,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            min-height: 80vh;
             padding: 20px;
         }
         
         .login-card {
             background-color: #ffffff;
             border: 2px solid #000000;
-            padding: 40px;
-            border-radius: 10px;
+            padding: 30px;
+            border-radius: 12px;
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
@@ -209,12 +214,12 @@
         
         .login-card h2 {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             font-size: 1.8rem;
         }
         
         .login-card h2 i {
-            margin-right: 10px;
+            margin-right: 12px;
             color: #4a6cf7;
         }
         
@@ -226,6 +231,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
+            font-size: 0.95rem;
         }
         
         .form-group label i {
@@ -239,11 +245,11 @@
         
         .form-group input {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 16px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
         }
         
         body.dark-mode .form-group input {
@@ -255,13 +261,15 @@
         .form-group input:focus {
             outline: none;
             border-color: #4a6cf7;
+            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
         }
         
-        .login-btn, .back-btn, .logout-btn {
-            width: 100%;
-            padding: 12px;
+        /* Tombol Umum */
+        .login-btn, .back-btn, .logout-btn,
+        .save-btn, .cancel-btn {
+            padding: 14px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
@@ -270,8 +278,10 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            width: 100%;
         }
         
+        /* Tombol Login */
         .login-btn {
             background-color: #4a6cf7;
             color: white;
@@ -280,11 +290,14 @@
         
         .login-btn:hover {
             background-color: #3a5ce5;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 108, 247, 0.3);
         }
         
+        /* Tombol Back/Logout */
         .back-btn, .logout-btn {
             background-color: transparent;
-            border: 1px solid #ddd;
+            border: 2px solid #ddd;
             color: #333;
         }
         
@@ -296,6 +309,7 @@
         
         .back-btn:hover, .logout-btn:hover {
             background-color: #f5f5f5;
+            transform: translateY(-2px);
         }
         
         body.dark-mode .back-btn:hover,
@@ -330,17 +344,25 @@
         }
         
         .admin-header h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
         }
         
         .admin-header h2 i {
-            margin-right: 10px;
+            margin-right: 12px;
             color: #4a6cf7;
         }
         
         .admin-actions {
             display: flex;
-            gap: 10px;
+            gap: 12px;
+        }
+        
+        /* Tombol Logout dan Back di Admin */
+        .admin-actions .logout-btn,
+        .admin-actions .back-btn {
+            width: auto;
+            padding: 10px 20px;
+            font-size: 0.95rem;
         }
         
         .admin-content {
@@ -352,9 +374,9 @@
         .form-card, .links-list {
             background-color: #fff;
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         
         body.dark-mode .form-card,
@@ -365,7 +387,13 @@
         
         .form-card h3, .links-list h3 {
             margin-bottom: 20px;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            color: #333;
+        }
+        
+        body.dark-mode .form-card h3,
+        body.dark-mode .links-list h3 {
+            color: #f0f0f0;
         }
         
         .form-card h3 i, .links-list h3 i {
@@ -373,22 +401,19 @@
             color: #4a6cf7;
         }
         
+        /* Form Buttons */
         .form-buttons {
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 25px;
         }
         
+        /* Tombol Save dan Cancel */
         .save-btn, .cancel-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 100%;
         }
         
         .save-btn {
@@ -398,6 +423,8 @@
         
         .save-btn:hover {
             background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
         }
         
         .cancel-btn {
@@ -407,15 +434,24 @@
         
         .cancel-btn:hover {
             background-color: #5a6268;
+            transform: translateY(-2px);
         }
         
+        /* Table Styles */
         .table-container {
             overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        body.dark-mode .table-container {
+            border-color: #444;
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 600px;
         }
         
         thead {
@@ -427,7 +463,7 @@
         }
         
         th, td {
-            padding: 12px 15px;
+            padding: 14px 16px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
@@ -439,6 +475,7 @@
         
         th {
             font-weight: 600;
+            font-size: 0.95rem;
         }
         
         tbody tr:hover {
@@ -449,21 +486,25 @@
             background-color: #2d2d2d;
         }
         
+        /* Action Buttons di Table */
         .action-buttons {
             display: flex;
-            gap: 5px;
+            gap: 8px;
         }
         
         .edit-btn, .delete-btn {
-            padding: 5px 10px;
+            padding: 8px 16px;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 0.85rem;
+            font-weight: 500;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            transition: all 0.3s;
+            gap: 6px;
+            transition: all 0.2s;
+            min-width: 70px;
+            justify-content: center;
         }
         
         .edit-btn {
@@ -473,6 +514,7 @@
         
         .edit-btn:hover {
             background-color: #e0a800;
+            transform: translateY(-1px);
         }
         
         .delete-btn {
@@ -482,58 +524,210 @@
         
         .delete-btn:hover {
             background-color: #c82333;
+            transform: translateY(-1px);
         }
         
-        /* Responsif untuk mobile */
+        /* ====== RESPONSIVE STYLES ====== */
+        /* Tablet (768px ke bawah) */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .links-container {
-                grid-template-columns: 1fr;
-            }
-            
             body {
                 padding: 15px;
             }
             
+            h1 {
+                font-size: 1.8rem;
+                padding: 0 50px;
+            }
+            
+            .subtitle {
+                font-size: 0.95rem;
+            }
+            
+            .header-buttons {
+                top: 15px;
+                right: 0;
+                gap: 8px;
+            }
+            
             .theme-toggle, .admin-toggle {
-                position: relative;
-                top: 0;
-                margin: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
             }
             
-            .theme-toggle {
-                right: auto;
-                left: calc(50% - 50px);
-            }
-            
-            .admin-toggle {
-                right: auto;
-                left: calc(50% + 10px);
-            }
-            
-            header {
-                padding-bottom: 20px;
-            }
-            
-            .admin-content {
+            .links-container {
                 grid-template-columns: 1fr;
+                gap: 15px;
             }
             
+            .link-card {
+                padding: 18px;
+            }
+            
+            .link-title {
+                font-size: 1.2rem;
+            }
+            
+            /* Admin Dashboard Responsive */
             .admin-header {
                 flex-direction: column;
                 gap: 15px;
                 text-align: center;
+                padding-bottom: 15px;
             }
             
-            .login-card {
-                padding: 30px 20px;
+            .admin-header h2 {
+                font-size: 1.6rem;
+                order: -1;
+                width: 100%;
+            }
+            
+            .admin-actions {
+                width: 100%;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .admin-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .form-card, .links-list {
+                padding: 20px;
+            }
+            
+            .form-card h3, .links-list h3 {
+                font-size: 1.3rem;
             }
             
             .form-buttons {
                 flex-direction: column;
+            }
+            
+            .save-btn, .cancel-btn {
+                width: 100%;
+            }
+            
+            table {
+                min-width: 500px;
+            }
+            
+            th, td {
+                padding: 12px 14px;
+            }
+        }
+        
+        /* Mobile (480px ke bawah) */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6rem;
+                padding: 0 40px;
+                margin-bottom: 5px;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 12px;
+            }
+            
+            .header-buttons {
+                position: static;
+                justify-content: center;
+                margin-top: 15px;
+            }
+            
+            .theme-toggle, .admin-toggle {
+                width: 45px;
+                height: 45px;
+            }
+            
+            header {
+                padding-bottom: 15px;
+            }
+            
+            .login-card {
+                padding: 25px 20px;
+            }
+            
+            .login-card h2 {
+                font-size: 1.6rem;
+            }
+            
+            .form-group input {
+                padding: 12px 14px;
+            }
+            
+            .login-btn, .back-btn, .logout-btn {
+                padding: 12px 16px;
+                font-size: 0.95rem;
+            }
+            
+            /* Admin Mobile */
+            .admin-header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .admin-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .admin-actions .logout-btn,
+            .admin-actions .back-btn {
+                width: 100%;
+            }
+            
+            .edit-btn, .delete-btn {
+                min-width: 60px;
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            th, td {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Very Small Mobile (360px ke bawah) */
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 1.4rem;
+                padding: 0;
+            }
+            
+            .links-container {
+                gap: 12px;
+            }
+            
+            .link-card {
+                padding: 15px;
+            }
+            
+            .link-title {
+                font-size: 1.1rem;
+            }
+            
+            .link-url {
+                font-size: 0.8rem;
+            }
+            
+            .form-card, .links-list {
+                padding: 15px;
+            }
+            
+            .form-card h3, .links-list h3 {
+                font-size: 1.2rem;
+            }
+            
+            table {
+                min-width: 300px;
             }
         }
     </style>
@@ -544,12 +738,14 @@
         <header>
             <h1>PORTAL WEBSITE</h1>
             <p class="subtitle">MADE BY ALMAJID</p>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <i class="fas fa-moon"></i>
-            </button>
-            <button class="admin-toggle" id="adminToggle" aria-label="Go to admin">
-                <i class="fas fa-cog"></i>
-            </button>
+            <div class="header-buttons">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="admin-toggle" id="adminToggle" aria-label="Go to admin">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
         </header>
         
         <main>
@@ -653,7 +849,6 @@
 
     <script>
         // ========== KONFIGURASI GLOBAL ==========
-        // Konstanta konfigurasi
         const SUPABASE_URL = 'https://bxhrnnwfqlsoviysqcdw.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ4aHJubndmcWxzb3ZpeXNxY2R3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3ODkzNDIsImV4cCI6MjA4MTM2NTM0Mn0.O7fpv0TrDd-8ZE3Z9B5zWyAuWROPis5GRnKMxmqncX8';
         
@@ -662,10 +857,8 @@
             password: 'Rantauprapat123'
         };
         
-        // Inisialisasi Supabase client - hanya sekali
         let supabaseClient = null;
         
-        // Fungsi untuk mendapatkan instance Supabase
         function getSupabase() {
             if (!supabaseClient) {
                 supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -673,9 +866,7 @@
             return supabaseClient;
         }
         
-        // Helper function untuk notifikasi
         function showNotification(message, type = 'success') {
-            // Hapus notifikasi sebelumnya
             const oldNotification = document.querySelector('.notification');
             if (oldNotification) {
                 oldNotification.remove();
@@ -689,17 +880,17 @@
                 top: 20px;
                 right: 20px;
                 padding: 15px 20px;
-                border-radius: 5px;
+                border-radius: 8px;
                 color: white;
                 font-weight: 600;
                 z-index: 1000;
                 animation: slideIn 0.3s ease;
                 ${type === 'success' ? 'background-color: #28a745;' : 'background-color: #dc3545;'}
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             `;
             
             document.body.appendChild(notification);
             
-            // Tambahkan animasi CSS jika belum ada
             if (!document.querySelector('#notification-styles')) {
                 const style = document.createElement('style');
                 style.id = 'notification-styles';
@@ -736,9 +927,9 @@
         }
     </script>
 
+    <!-- JavaScript lainnya tetap sama seperti sebelumnya -->
     <script>
         // ========== main.js ==========
-        // Elemen DOM
         const themeToggle = document.getElementById('themeToggle');
         const adminToggle = document.getElementById('adminToggle');
         const backToMain = document.getElementById('backToMain');
@@ -748,22 +939,18 @@
         const adminPage = document.getElementById('adminPage');
         const linksContainer = document.getElementById('linksContainer');
         
-        // Cek preferensi dark mode dari localStorage
         const isDarkMode = localStorage.getItem('darkMode') === 'true';
         const icon = themeToggle.querySelector('i');
         
-        // Terapkan mode sesuai preferensi yang disimpan
         if (isDarkMode) {
             document.body.classList.add('dark-mode');
             icon.classList.remove('fa-moon');
             icon.classList.add('fa-sun');
         }
         
-        // Toggle dark mode
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             
-            // Toggle ikon
             if (document.body.classList.contains('dark-mode')) {
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
@@ -775,7 +962,6 @@
             }
         });
         
-        // Navigasi antar halaman
         adminToggle.addEventListener('click', () => {
             mainPage.classList.add('hidden');
             loginPage.classList.remove('hidden');
@@ -791,7 +977,6 @@
             mainPage.classList.remove('hidden');
         });
         
-        // Fungsi untuk memuat links dari database
         async function loadLinks() {
             try {
                 const supabase = getSupabase();
@@ -802,23 +987,20 @@
                 
                 if (error) throw error;
                 
-                // Jika belum ada data, buat data default
                 if (!links || links.length === 0) {
                     await createDefaultLinks();
-                    loadLinks(); // Muat ulang setelah membuat default
+                    loadLinks();
                     return;
                 }
                 
                 displayLinks(links);
             } catch (error) {
                 console.error('Error loading links:', error);
-                // Tampilkan default links jika error
                 displayDefaultLinks();
                 showNotification('Error loading links. Using default links.', 'error');
             }
         }
         
-        // Fungsi untuk membuat links default
         async function createDefaultLinks() {
             const defaultLinks = [
                 { title: 'Portfolio 1', url: 'https://almajid.vercel.app/' },
@@ -847,7 +1029,6 @@
             }
         }
         
-        // Fungsi untuk menampilkan links
         function displayLinks(links) {
             linksContainer.innerHTML = '';
             
@@ -866,7 +1047,6 @@
             });
         }
         
-        // Fungsi untuk menampilkan default links (fallback)
         function displayDefaultLinks() {
             const defaultLinks = [
                 { title: 'Portfolio 1', url: 'https://almajid.vercel.app/' },
@@ -884,13 +1064,11 @@
             displayLinks(defaultLinks);
         }
         
-        // Muat links saat halaman dimuat
         document.addEventListener('DOMContentLoaded', loadLinks);
     </script>
 
     <script>
         // ========== admin.js ==========
-        // Elemen DOM Admin
         const loginForm = document.getElementById('loginForm');
         const logoutBtn = document.getElementById('logoutBtn');
         const linkForm = document.getElementById('linkForm');
@@ -898,21 +1076,17 @@
         const linksTable = document.getElementById('linksTable');
         const loginError = document.getElementById('loginError');
         
-        // State untuk admin
         let isEditing = false;
         let currentEditId = null;
-        let currentLinks = []; // Simpan links untuk edit
+        let currentLinks = [];
         
-        // Event Listener untuk form login
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            // Validasi login
             if (username === ADMIN_CONFIG.username && password === ADMIN_CONFIG.password) {
-                // Login berhasil
                 loginPage.classList.add('hidden');
                 adminPage.classList.remove('hidden');
                 loadAdminLinks();
@@ -921,25 +1095,21 @@
                 document.getElementById('password').value = '';
                 showNotification('Login successful!', 'success');
             } else {
-                // Login gagal
                 loginError.textContent = 'Invalid username or password!';
                 showNotification('Login failed!', 'error');
             }
         });
         
-        // Event Listener untuk logout
         logoutBtn.addEventListener('click', () => {
             adminPage.classList.add('hidden');
             loginPage.classList.remove('hidden');
             showNotification('Logged out successfully!', 'success');
         });
         
-        // Event Listener untuk cancel edit
         cancelEdit.addEventListener('click', () => {
             resetForm();
         });
         
-        // Event Listener untuk form link
         linkForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -947,20 +1117,16 @@
             const url = document.getElementById('linkUrl').value;
             
             if (isEditing) {
-                // Update existing link
                 await updateLink(currentEditId, { title, url });
             } else {
-                // Create new link
                 await createLink({ title, url });
             }
             
-            // Reset form dan refresh table
             resetForm();
             loadAdminLinks();
-            loadLinks(); // Refresh halaman utama juga
+            loadLinks();
         });
         
-        // Fungsi untuk membuat link baru
         async function createLink(linkData) {
             try {
                 const supabase = getSupabase();
@@ -978,7 +1144,6 @@
             }
         }
         
-        // Fungsi untuk mengupdate link
         async function updateLink(id, linkData) {
             try {
                 const supabase = getSupabase();
@@ -997,7 +1162,6 @@
             }
         }
         
-        // Fungsi untuk menghapus link
         async function deleteLink(id) {
             if (!confirm('Are you sure you want to delete this link?')) return;
             
@@ -1012,14 +1176,13 @@
                 
                 showNotification('Link deleted successfully!', 'success');
                 loadAdminLinks();
-                loadLinks(); // Refresh halaman utama juga
+                loadLinks();
             } catch (error) {
                 console.error('Error deleting link:', error);
                 showNotification('Error deleting link!', 'error');
             }
         }
         
-        // Fungsi untuk memuat links di admin dashboard
         async function loadAdminLinks() {
             try {
                 const supabase = getSupabase();
@@ -1038,7 +1201,6 @@
             }
         }
         
-        // Fungsi untuk menampilkan links di table admin
         function displayAdminLinks(links) {
             linksTable.innerHTML = '';
             
@@ -1068,7 +1230,6 @@
                 linksTable.appendChild(row);
             });
             
-            // Tambahkan event listeners untuk tombol edit dan delete
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const id = e.target.closest('.edit-btn').dataset.id;
@@ -1084,8 +1245,7 @@
             });
         }
         
-        // Fungsi untuk mengisi form edit
-        async function editLink(id) {
+        function editLink(id) {
             const link = currentLinks.find(l => l.id == id);
             
             if (link) {
@@ -1096,7 +1256,6 @@
                 isEditing = true;
                 currentEditId = id;
                 
-                // Ubah teks tombol
                 const saveBtn = linkForm.querySelector('.save-btn');
                 saveBtn.innerHTML = '<i class="fas fa-save"></i> Update Link';
                 
@@ -1104,7 +1263,6 @@
             }
         }
         
-        // Fungsi untuk reset form
         function resetForm() {
             linkForm.reset();
             document.getElementById('linkId').value = '';
@@ -1112,7 +1270,6 @@
             isEditing = false;
             currentEditId = null;
             
-            // Kembalikan teks tombol
             const saveBtn = linkForm.querySelector('.save-btn');
             saveBtn.innerHTML = '<i class="fas fa-save"></i> Save Link';
         }
