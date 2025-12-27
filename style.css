@@ -1,0 +1,528 @@
+/* Reset dan dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Mode gelap */
+body.dark-mode {
+    background-color: #121212;
+    color: #f0f0f0;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 30px 0;
+    border-bottom: 2px solid #000000;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+body.dark-mode header {
+    border-bottom-color: #f0f0f0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+/* Tombol toggle dark mode dan admin */
+.theme-toggle, .admin-toggle {
+    position: absolute;
+    top: 30px;
+    background: none;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #000000;
+}
+
+.theme-toggle {
+    right: 50px;
+}
+
+.admin-toggle {
+    right: 0;
+}
+
+body.dark-mode .theme-toggle,
+body.dark-mode .admin-toggle {
+    border-color: #f0f0f0;
+    color: #f0f0f0;
+}
+
+.theme-toggle:hover,
+.admin-toggle:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+body.dark-mode .theme-toggle:hover,
+body.dark-mode .admin-toggle:hover {
+    background-color: #f0f0f0;
+    color: #121212;
+}
+
+/* Container link */
+.links-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+/* Card link */
+.link-card {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    padding: 20px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: #000000;
+    display: block;
+    border-radius: 8px;
+}
+
+body.dark-mode .link-card {
+    background-color: #1e1e1e;
+    border-color: #444444;
+    color: #f0f0f0;
+}
+
+.link-card:hover {
+    background-color: #000000;
+    color: #ffffff;
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+body.dark-mode .link-card:hover {
+    background-color: #f0f0f0;
+    color: #121212;
+    border-color: #f0f0f0;
+}
+
+.link-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.link-url {
+    font-size: 0.9rem;
+    color: #555555;
+    word-break: break-all;
+}
+
+body.dark-mode .link-url {
+    color: #aaaaaa;
+}
+
+.link-card:hover .link-url {
+    color: #cccccc;
+}
+
+body.dark-mode .link-card:hover .link-url {
+    color: #333333;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    border-top: 1px solid #000000;
+    margin-top: 40px;
+    font-size: 0.9rem;
+}
+
+body.dark-mode footer {
+    border-top-color: #444444;
+}
+
+/* ====== LOGIN PAGE STYLES ====== */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-card {
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+body.dark-mode .login-card {
+    background-color: #1e1e1e;
+    border-color: #444444;
+    color: #f0f0f0;
+}
+
+.login-card h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+.login-card h2 i {
+    margin-right: 10px;
+    color: #4a6cf7;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group label i {
+    margin-right: 8px;
+    color: #666;
+}
+
+body.dark-mode .form-group label i {
+    color: #aaa;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+body.dark-mode .form-group input {
+    background-color: #2d2d2d;
+    border-color: #555;
+    color: #f0f0f0;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4a6cf7;
+}
+
+.login-btn, .back-btn, .logout-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.login-btn {
+    background-color: #4a6cf7;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.login-btn:hover {
+    background-color: #3a5ce5;
+}
+
+.back-btn, .logout-btn {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+body.dark-mode .back-btn,
+body.dark-mode .logout-btn {
+    border-color: #555;
+    color: #f0f0f0;
+}
+
+.back-btn:hover, .logout-btn:hover {
+    background-color: #f5f5f5;
+}
+
+body.dark-mode .back-btn:hover,
+body.dark-mode .logout-btn:hover {
+    background-color: #333;
+}
+
+.login-error {
+    color: #dc3545;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+    min-height: 20px;
+}
+
+/* ====== ADMIN DASHBOARD STYLES ====== */
+.admin-container {
+    padding: 20px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #000;
+}
+
+body.dark-mode .admin-header {
+    border-bottom-color: #444;
+}
+
+.admin-header h2 {
+    font-size: 2rem;
+}
+
+.admin-header h2 i {
+    margin-right: 10px;
+    color: #4a6cf7;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.admin-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+.form-card, .links-list {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+body.dark-mode .form-card,
+body.dark-mode .links-list {
+    background-color: #1e1e1e;
+    border-color: #444;
+}
+
+.form-card h3, .links-list h3 {
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.form-card h3 i, .links-list h3 i {
+    margin-right: 10px;
+    color: #4a6cf7;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.save-btn, .cancel-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.save-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.save-btn:hover {
+    background-color: #218838;
+}
+
+.cancel-btn {
+    background-color: #6c757d;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f8f9fa;
+}
+
+body.dark-mode thead {
+    background-color: #2d2d2d;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+body.dark-mode th,
+body.dark-mode td {
+    border-bottom-color: #444;
+}
+
+th {
+    font-weight: 600;
+}
+
+tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+body.dark-mode tbody tr:hover {
+    background-color: #2d2d2d;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.edit-btn, .delete-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s;
+}
+
+.edit-btn {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Responsif untuk mobile */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .links-container {
+        grid-template-columns: 1fr;
+    }
+    
+    body {
+        padding: 15px;
+    }
+    
+    .theme-toggle, .admin-toggle {
+        position: relative;
+        top: 0;
+        margin: 10px;
+    }
+    
+    .theme-toggle {
+        right: auto;
+        left: calc(50% - 50px);
+    }
+    
+    .admin-toggle {
+        right: auto;
+        left: calc(50% + 10px);
+    }
+    
+    header {
+        padding-bottom: 20px;
+    }
+    
+    .admin-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .login-card {
+        padding: 30px 20px;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+    }
+}
